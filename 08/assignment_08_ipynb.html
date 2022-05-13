@@ -14244,7 +14244,7 @@ data type of point y =  float64
     <span class="c1"># ++++++++++++++++++++++++++++++++++++++++++++++++++</span>
     <span class="c1"># complete the blanks</span>
     <span class="c1">#</span>
-   
+    <span class="n">label</span> <span class="o">=</span> <span class="n">label</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
     <span class="n">h</span> <span class="o">=</span> <span class="n">compute_logistic_regression</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">point</span><span class="p">)</span>
     <span class="n">residual</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">label</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">h</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">label</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">h</span><span class="p">)</span>
    
@@ -14286,7 +14286,7 @@ data type of point y =  float64
     <span class="c1"># complete the blanks</span>
     <span class="c1">#</span>
     
-    <span class="n">loss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">compute_residual</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">point</span><span class="p">,</span> <span class="n">label</span><span class="p">))</span> <span class="o">/</span> <span class="n">point</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">compute_residual</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">point</span><span class="p">,</span> <span class="n">label</span><span class="p">))</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
     <span class="c1">#</span>
     <span class="c1"># ++++++++++++++++++++++++++++++++++++++++++++++++++</span>
 
@@ -14330,9 +14330,9 @@ data type of point y =  float64
     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">point</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">T</span> 
     
-    <span class="n">h</span> <span class="o">=</span> <span class="p">(</span><span class="n">compute_logistic_regression</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">point</span><span class="p">)</span> <span class="o">-</span> <span class="n">label</span><span class="p">)</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="p">(</span><span class="n">compute_logistic_regression</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">point</span><span class="p">)</span> <span class="o">-</span> <span class="n">label</span><span class="o">.</span><span class="n">flatten</span><span class="p">())</span>
     
-    <span class="n">gradient</span> <span class="o">=</span> <span class="p">(</span><span class="n">h</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">/</span><span class="n">point</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">gradient</span> <span class="o">=</span> <span class="p">(</span><span class="n">h</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
     <span class="c1">#</span>
     <span class="c1"># ++++++++++++++++++++++++++++++++++++++++++++++++++</span>
     
@@ -14825,12 +14825,11 @@ shape of label :  (600,)
 **************************************************
 ## [RESULT 04]
 **************************************************
-1.783699877256482
+1.541849938628241
 **************************************************
 ## [RESULT 05]
 **************************************************
-[[ 0.51682955  0.57070867  0.85606301]
- [-0.48317045  0.57070867  0.85606301]]
+[0.01682955 1.57070867 2.35606301]
 **************************************************
 ## [RESULT 06]
 **************************************************
